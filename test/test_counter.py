@@ -25,7 +25,7 @@ def _get_redis_counter(counter):
     return counter(redis.StrictRedis(**TEST_REDIS_CONFIG))
 
 
-class TestSlidingCounter(TestCase):
+class TestCounter(TestCase):
     def setUp(self):
         self.counter_factories = [
             partial(_get_redis_counter, SlidingRedisCounter),
