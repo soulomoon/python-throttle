@@ -11,7 +11,7 @@ TEST_REDIS_CONFIG = {
     'host': 'localhost',
     'port': 6379,
     'decode_responses': True,
-    'db': 0
+    'db': 10
 }
 
 
@@ -59,6 +59,7 @@ class TestCounter(TestCase):
             tf.reset(key)
 
     def test_naive_pressure_test(self):
+        """simply repeating, multi thread or multi process"""
         if self.pressure_test_on:
             for counter_factory in self.counter_factories:
                 repeat = [1, 10, 1000, 1000, 10, 1]
