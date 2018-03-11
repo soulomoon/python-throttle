@@ -50,8 +50,7 @@ class SlidingRedisCounter(BaseRedisCounter):
 
 
 class FixedWindowRedisCounter(BaseRedisCounter):
-    """
-        counter using redis' incr
+    """counter using redis' incr
     """
 
     # lua script from (https://redis.io/commands/incr) to avoid race condition
