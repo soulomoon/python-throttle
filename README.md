@@ -5,7 +5,19 @@
 
 ## sliding log or fixed window limiter
 * make_sliding_limiter
+simply using redis incr, which about 10 times faster than sliding but it the limit is not smooth, may overflow two threshold near the gap between two interval
 * make_fixed_window_limiter
+using redis ordered set, it is slow but offer more smooth limit and more extendability
+
+## dummy beach mark
+It is in my unittest and not accurate,
+```
+rate_counter_pressure_test: SlidingRedisCounter
+rate_counter_pressure_test: SlidingRedisCounter time count: 1.0075314449495636
+rate_counter_pressure_test: FixedWindowRedisCounter
+rate_counter_pressure_test: FixedWindowRedisCounter time count: 0.13711917598266155
+```
+
 ## dummy exmaple usage:
 ```python
 import time
