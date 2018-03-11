@@ -28,7 +28,7 @@ def _get_redis_counter(counter):
 class TestSlidingCounter(TestCase):
     def setUp(self):
         self.counter_factories = [
-            partial(partial(_get_redis_counter, SlidingRedisCounter))
+            partial(_get_redis_counter, SlidingRedisCounter)
         ]
         self.pressure_test_on = True
 
