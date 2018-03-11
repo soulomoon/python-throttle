@@ -3,6 +3,9 @@
 
 # python redis backed limiter
 
+## sliding log or fixed window limiter
+* make_sliding_limiter
+* make_fixed_window_limiter
 ## dummy exmaple usage:
 ```python
 import time
