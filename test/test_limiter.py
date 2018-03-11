@@ -15,7 +15,7 @@ class TestRateLimiter(TestCase):
         # threshold interval
         self.test_data = [(random.randint(0, 100), random.randint(1, 2)) for i in range(5)]
 
-    def test_sliding_rate_limiter(self):
+    def test_rate_limiter(self):
         for maker in self.test_limiter_factory:
             for threshold, interval in self.test_data:
                 self.limiter_test(maker, threshold, interval)
