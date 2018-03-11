@@ -5,8 +5,8 @@ from abc import ABC, abstractmethod
 
 class AbstractionCounter(ABC):
     @abstractmethod
-    def incr(self, key, expired):
-        """incr the counter and return result"""
+    def add_key(self, key, expired):
+        """add_key the counter and return result"""
 
     @abstractmethod
     def current(self, key):
@@ -23,7 +23,7 @@ class SlidingRedisCounter(AbstractionCounter):
     def __init__(self, redis):
         self.redis = redis
 
-    def incr(self, key, expired):
+    def add_key(self, key, expired):
         now = time.time()
         with self.redis.pipeline() as session:
             session.zremrangebyscore(key, 0, now - expired)
