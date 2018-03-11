@@ -4,12 +4,13 @@ from limiter.counter import AbstractionCounter
 
 
 class RateLimiter:
-    """rate limiter, please give it a counter with add_key method..."""
+    """rate limiter, please give it a counter implementing all methods of AbstractionCounter"""
 
     def __init__(self, threshold, interval, counter: AbstractionCounter):
         """
         :param threshold: int, or we try to ceil
         :param interval: int, or we try to ceil
+        :param counter: subclass of or one with all methods of AbstractionCounter
         """
         assert threshold > 0
         assert interval > 0
