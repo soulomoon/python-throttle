@@ -1,4 +1,4 @@
-from limiter import AbstractionCounter
+from limiter.counter import AbstractionCounter
 
 
 class SlidingLimiter:
