@@ -4,20 +4,21 @@ from unittest.mock import patch
 import redis
 from mockredis import mock_strict_redis_client
 
-from limiter import SlidingLimiter
+from limiter.counter import SlidingRedisCounter
 
 
-class TestSlidingLimiter(TestCase):
+class TestSlidingCounter(TestCase):
 
     @patch('redis.StrictRedis', mock_strict_redis_client)
     def test_addkey(self):
         redis_ins = redis.StrictRedis()
+        expired = 1000
         key = "it is a test"
 
-        sl = SlidingLimiter(10, 100, redis_ins)
+        sl = SlidingRedisCounter(redis_ins)
         sl.reset(key)
-        result = sl.incr(key)
+        result = sl.incr(key, expired)
         self.assertEqual(0, result)
-        sl.incr(key)
-        self.assertEqual(2, sl.incr(key))
+        sl.incr(key, expired)
+        self.assertEqual(2, sl.incr(key, expired))
         self.assertEqual(3, sl.current(key))
