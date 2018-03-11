@@ -5,7 +5,7 @@ from unittest import TestCase
 
 import redis
 
-from limiter.counter import SlidingRedisCounter, AbstractionCounter
+from limiter.counter import SlidingRedisCounter, AbstractionCounter, FixedWindowRedisCounter
 
 TEST_REDIS_CONFIG = {
     'host': 'localhost',
@@ -28,7 +28,8 @@ def _get_redis_counter(counter):
 class TestSlidingCounter(TestCase):
     def setUp(self):
         self.counter_factories = [
-            partial(_get_redis_counter, SlidingRedisCounter)
+            partial(_get_redis_counter, SlidingRedisCounter),
+            partial(_get_redis_counter, FixedWindowRedisCounter)
         ]
         self.pressure_test_on = True
 
