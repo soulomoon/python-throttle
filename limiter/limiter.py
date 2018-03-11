@@ -15,5 +15,5 @@ class RateLimiter:
         self.counter = counter
 
     def exceeded(self, iid):
-        current = self.counter.add_key(iid, self.interval)
+        current = self.counter.add_key(self.prefix.format(iid), self.interval)
         return current > self.threshold
