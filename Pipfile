@@ -13,6 +13,7 @@ redis = "*"
 [dev-packages]
 
 mockredispy = "*"
+coverage = "*"
 
 
 [requires]
