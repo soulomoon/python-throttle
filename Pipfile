@@ -7,10 +7,12 @@ name = "pypi"
 
 [packages]
 
+redis = "*"
 
 
 [dev-packages]
 
+mockredispy = "*"
 
 
 [requires]
