@@ -4,7 +4,7 @@ python:
   - "3.6"
 # command to install dependencies
 install:
-  - pip install -r pipenv
+  - pip install pipenv
   - pipenv install -d
 # command to run tests
 script:
