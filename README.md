@@ -4,7 +4,7 @@
 # python redis backed limiter
 
 ## dummy exmaple usage:
-```python3
+```python
 import time
 import limiter
 TEST_REDIS_CONFIG = {'host': 'localhost','port': 6379,'db': 10}
