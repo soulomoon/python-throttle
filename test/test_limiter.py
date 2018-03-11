@@ -41,3 +41,4 @@ class TestRateLimiter(TestCase):
         # gas up, now you can go
         self.assertEqual(0, rate_limiter.current(key))
         self.assertEqual(False, rate_limiter.exceeded(key))
+        rate_limiter.reset(key)
