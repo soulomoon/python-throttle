@@ -21,7 +21,8 @@ class TestRateLimiter(TestCase):
                 self.limiter_test(maker, threshold, interval)
 
     def limiter_test(self, make_limiter, threshold, interval):
-        """test if rate limiter is working"""
+        """test if rate limiter is working
+        """
         key = "test_sliding_rate_limiter"
         rate_limiter = make_limiter(threshold=threshold, interval=interval,
                                     redis_config=TEST_REDIS_CONFIG)

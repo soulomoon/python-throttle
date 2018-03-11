@@ -10,7 +10,8 @@ from test.config import TEST_REDIS_CONFIG
 
 
 def _mixed_counter_init(counter_cls):
-    # try to boot up counter of any type
+    """try to boot up counter of any type
+    """
     assert issubclass(counter_cls, AbstractionCounter)
     if issubclass(counter_cls, BaseRedisCounter):
         redis_ins = redis.StrictRedis(**TEST_REDIS_CONFIG)
