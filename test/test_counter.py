@@ -6,13 +6,7 @@ from unittest import TestCase
 import redis
 
 from limiter.counter import SlidingRedisCounter, AbstractionCounter, FixedWindowRedisCounter
-
-TEST_REDIS_CONFIG = {
-    'host': 'localhost',
-    'port': 6379,
-    'decode_responses': True,
-    'db': 10
-}
+from test.config import TEST_REDIS_CONFIG
 
 
 def repeat_incr(counter_factory, key, n):
