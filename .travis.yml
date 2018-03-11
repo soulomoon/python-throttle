@@ -6,8 +6,11 @@ python:
 install:
   - pip install pipenv
   - pipenv install -d
+  - pipenv install codecov
 # command to run tests
 script:
-  - pipenv run python -m unittest discover
+  - pipenv run coverage run --source limiter  -m unittest discover
+after_success:
+  - pipenv run codecov
 services:
   - redis-server
