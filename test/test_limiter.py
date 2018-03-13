@@ -31,7 +31,6 @@ class TestRateLimiter(TestCase):
         rate_limiter.reset(key)
         # with in range, not blocking
         for _ in range(threshold):
-            # print(rate_limiter.current(key))
             self.assertEqual(False, rate_limiter.exceeded(key))
 
         self.assertEqual(threshold, rate_limiter.current(key))
@@ -53,7 +52,7 @@ class TestRateLimiter(TestCase):
         """reject time should be the same no mater running in one thread , multi thread or multi process
         for the same threshold
         """
-        threshold_list = [i for i in range(10, 20)]
+        threshold_list = [30 for i in range(10)]
         attempt_list = [i for i in range(10, 60, 5)]
         threshold_attempt_tuples = list(zip(threshold_list, attempt_list))
 
@@ -61,7 +60,6 @@ class TestRateLimiter(TestCase):
         throttle = make_limiter(threshold=10, interval=1000, redis_config=TEST_REDIS_CONFIG)
         print("{} :{}".format(key, type(throttle._counter)))
 
-        throttle.reset(key)
         single_thread = 0
         for threshold, attempt in threshold_attempt_tuples:
             single_thread += _repeat_attempt(make_limiter, key, (threshold, attempt))
