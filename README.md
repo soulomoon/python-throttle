@@ -7,7 +7,7 @@
 This module mainly offer two limiter
 * make_sliding_limiter  
 simply using redis incr, which about 10 times the speed of the sliding version but the limit is not smooth, may overflow a threshold size near the gap between two intervals
-* make_fixed_window_limiter  
+* make_fixed_window_limiter    
 using redis ordered set, slow but offers more smooth limit and more extendability
 
 ## dummy exmaple usage:
