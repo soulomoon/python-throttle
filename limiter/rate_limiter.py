@@ -8,12 +8,12 @@ class RateLimiter:
 
     def __init__(self, threshold, interval, counter: AbstractionCounter):
         """
-        :param threshold: int, or we try to ceil
-        :param interval: int, or we try to ceil
+        :param threshold: int, or we try to ceil, no smaller than 0
+        :param interval: int, or we try to ceil, no smaller than 1
         :param counter: subclass of or one with all methods of AbstractionCounter
         """
-        assert threshold > 0
-        assert interval > 0
+        assert threshold >= 0
+        assert interval >= 1
         self._threshold = math.ceil(threshold)
         self._interval = math.ceil(interval)
         self._prefix = "rate-limiter:{}"

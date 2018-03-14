@@ -15,7 +15,7 @@ class TestRateLimiter(TestCase):
             make_fixed_window_limiter
         ]
         # threshold interval
-        self.test_data = [(random.randint(0, 100), random.randint(1, 2)) for i in range(5)]
+        self.test_data = [(random.randint(1, 100), random.randint(1, 2)) for i in range(5)]
 
     def test_rate_limiter(self):
         for maker in self.test_limiter_factory:
