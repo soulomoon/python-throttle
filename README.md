@@ -5,9 +5,9 @@
 
 ## sliding log or fixed window limiter
 This module mainly offer two limiter
-* make_sliding_limiter  
+* FixedWindowLimiter  
 simply using redis incr, which about 10 times the speed of the sliding version but the limit is not smooth, may overflow a threshold size near the gap between two intervals
-* make_fixed_window_limiter    
+* SlidingWindowLimiter    
 using redis ordered set, slow but offers more smooth limit and more extendability
 
 ## dummy exmaple usage:
@@ -16,7 +16,7 @@ import time
 import limiter
 TEST_REDIS_CONFIG = {'host': 'localhost','port': 6379,'db': 10}
 ip = "who are you?"
-throttle = limiter.make_fixed_window_limiter(threshold=2, interval=3, redis_config=TEST_REDIS_CONFIG)
+throttle = limiter.FixedWindowLimiter(threshold=2, interval=3, redis_config=TEST_REDIS_CONFIG)
 print("first time, blocked?: {}".format(throttle.exceeded(ip)))
 print("second time, blocked?: {}".format(throttle.exceeded(ip)))
 print("now I block you, blocked?: {}".format(throttle.exceeded(ip)))

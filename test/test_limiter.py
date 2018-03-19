@@ -4,15 +4,15 @@ from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from functools import partial
 from unittest import TestCase
 
-from limiter import make_fixed_window_limiter, RateLimiter, make_sliding_limiter
+from limiter import RateLimiter, FixedWindowLimiter, SlidingWindowLimiter
 from test.config import TEST_REDIS_CONFIG
 
 
 class TestRateLimiter(TestCase):
     def setUp(self):
         self.test_limiter_factory = [
-            make_sliding_limiter,
-            make_fixed_window_limiter
+            FixedWindowLimiter,
+            SlidingWindowLimiter
         ]
         # threshold interval
         self.test_data = [(random.randint(1, 100), random.randint(1, 2)) for _ in range(5)]
@@ -26,8 +26,7 @@ class TestRateLimiter(TestCase):
         """test if rate limiter is working
         """
         key = "test_sliding_rate_limiter"
-        rate_limiter = make_limiter(threshold=threshold, interval=interval,
-                                    redis_config=TEST_REDIS_CONFIG)
+        rate_limiter = make_limiter(threshold=threshold, interval=interval, redis_config=TEST_REDIS_CONFIG)
         rate_limiter.reset(key)
         # with in range, not blocking
         for _ in range(threshold):
