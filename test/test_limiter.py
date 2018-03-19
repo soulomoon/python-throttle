@@ -37,7 +37,7 @@ class TestRateLimiter(TestCase):
         # gas down, blocked!!
         self.assertEqual(True, rate_limiter.exceeded(key))
         self.assertEqual(True, rate_limiter.exceeded(key))
-        time.sleep(interval)
+        time.sleep(interval + 0.1)
 
         # gas up, now you can go
         self.assertEqual(0, rate_limiter.current(key))
