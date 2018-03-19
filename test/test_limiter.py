@@ -4,18 +4,19 @@ from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from functools import partial
 from unittest import TestCase
 
-from limiter import make_fixed_window_limiter, RateLimiter, make_sliding_limiter
+from limiter import RateLimiter
+from limiter.rate_limiter import FixedWindowLimiter, SlidingWindowLimiter
 from test.config import TEST_REDIS_CONFIG
 
 
 class TestRateLimiter(TestCase):
     def setUp(self):
         self.test_limiter_factory = [
-            make_sliding_limiter,
-            make_fixed_window_limiter
+            FixedWindowLimiter,
+            SlidingWindowLimiter
         ]
         # threshold interval
-        self.test_data = [(random.randint(0, 100), random.randint(1, 2)) for i in range(5)]
+        self.test_data = [(random.randint(1, 100), random.randint(1, 2)) for _ in range(5)]
 
     def test_rate_limiter(self):
         for maker in self.test_limiter_factory:
@@ -26,8 +27,7 @@ class TestRateLimiter(TestCase):
         """test if rate limiter is working
         """
         key = "test_sliding_rate_limiter"
-        rate_limiter = make_limiter(threshold=threshold, interval=interval,
-                                    redis_config=TEST_REDIS_CONFIG)
+        rate_limiter = make_limiter(threshold=threshold, interval=interval, redis_config=TEST_REDIS_CONFIG)
         rate_limiter.reset(key)
         # with in range, not blocking
         for _ in range(threshold):
@@ -37,7 +37,7 @@ class TestRateLimiter(TestCase):
         # gas down, blocked!!
         self.assertEqual(True, rate_limiter.exceeded(key))
         self.assertEqual(True, rate_limiter.exceeded(key))
-        time.sleep(interval)
+        time.sleep(interval + 0.1)
 
         # gas up, now you can go
         self.assertEqual(0, rate_limiter.current(key))
@@ -52,7 +52,7 @@ class TestRateLimiter(TestCase):
         """reject time should be the same no mater running in one thread , multi thread or multi process
         for the same threshold
         """
-        threshold_list = [30 for i in range(10)]
+        threshold_list = [30 for _ in range(10)]
         attempt_list = [i for i in range(10, 60, 5)]
         threshold_attempt_tuples = list(zip(threshold_list, attempt_list))
 
@@ -86,4 +86,4 @@ def _repeat_attempt(maker, key, threshold_attempt) -> int:
     threshold = threshold_attempt[0]
     attempt = threshold_attempt[1]
     throttle = maker(threshold=threshold, interval=1000, redis_config=TEST_REDIS_CONFIG)  # type: RateLimiter
-    return [throttle.exceeded(key) for i in range(attempt)].count(True)
+    return [throttle.exceeded(key) for _ in range(attempt)].count(True)
