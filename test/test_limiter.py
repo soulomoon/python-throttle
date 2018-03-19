@@ -4,7 +4,8 @@ from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from functools import partial
 from unittest import TestCase
 
-from limiter import RateLimiter, FixedWindowLimiter, SlidingWindowLimiter
+from limiter import RateLimiter
+from limiter.rate_limiter import FixedWindowLimiter, SlidingWindowLimiter
 from test.config import TEST_REDIS_CONFIG
 
 
