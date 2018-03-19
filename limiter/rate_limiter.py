@@ -4,7 +4,7 @@ from redis import StrictRedis
 
 from .counter import AbstractionCounter, SlidingRedisCounter, FixedWindowRedisCounter
 
-__all__ = ['RateLimiter', 'FixedWindowRedisCounter', 'SlidingRedisCounter']
+__all__ = ['FixedWindowRedisCounter', 'SlidingRedisCounter']
 
 
 class RateLimiter:
