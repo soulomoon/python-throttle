@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='python-throttle',
     packages=['limiter'],
-    version='0.1.3',
+    version='0.1.4',
     description='Super naive python redis limiter',
     author='soulomoon',
     author_email='fwy996602672@gmail.com',
