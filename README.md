@@ -11,6 +11,9 @@ simply using redis incr, which about 10 times the speed of the sliding version b
 * SlidingWindowLimiter    
 using redis ordered set, slow but offers more smooth limit and more extendability
 
+## installation
+`pip install python-throttle`
+
 ## dummy exmaple usage:
 ```python
 import time
