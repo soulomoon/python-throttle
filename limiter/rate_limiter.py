@@ -6,7 +6,7 @@ from limiter.counter import AbstractionCounter
 class RateLimiter:
     """rate limiter, please give it a counter implementing all methods of AbstractionCounter"""
 
-    def __init__(self, threshold, interval, counter: AbstractionCounter):
+    def __init__(self, threshold, interval, counter: AbstractionCounter, name_space="default"):
         """
         :param threshold: int, or we try to ceil, no smaller than 0
         :param interval: int, or we try to ceil, no smaller than 1
@@ -16,7 +16,7 @@ class RateLimiter:
         assert interval >= 1
         self._threshold = math.ceil(threshold)
         self._interval = math.ceil(interval)
-        self._prefix = "rate-limiter:{}"
+        self._prefix = "rate-limiter:" + name_space + "{}"
         self._counter = counter
 
     def exceeded(self, iid):
