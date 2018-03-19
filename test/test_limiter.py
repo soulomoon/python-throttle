@@ -4,7 +4,8 @@ from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from functools import partial
 from unittest import TestCase
 
-from limiter import RateLimiter, FixedWindowLimiter, SlidingWindowLimiter
+from limiter import RateLimiter
+from limiter.rate_limiter import FixedWindowLimiter, SlidingWindowLimiter
 from test.config import TEST_REDIS_CONFIG
 
 
@@ -36,7 +37,7 @@ class TestRateLimiter(TestCase):
         # gas down, blocked!!
         self.assertEqual(True, rate_limiter.exceeded(key))
         self.assertEqual(True, rate_limiter.exceeded(key))
-        time.sleep(interval)
+        time.sleep(interval + 0.1)
 
         # gas up, now you can go
         self.assertEqual(0, rate_limiter.current(key))
