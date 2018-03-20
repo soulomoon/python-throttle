@@ -8,7 +8,7 @@ setup(
     author='soulomoon',
     author_email='fwy996602672@gmail.com',
     url='https://github.com/soulomoon/python-throttle',
-    keywords=['throttle', 'limiter', 'redis', 'counter', 'timer', 'middleware'],
+    keywords=['throttle limiter redis counter timer middleware'],
     python_requires='>=3.4',
     install_requires=[
         'redis>=2.6',
