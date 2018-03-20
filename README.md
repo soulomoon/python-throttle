@@ -1,5 +1,6 @@
 ![Build Status](https://travis-ci.org/soulomoon/python-throttle.svg?branch=develop)
 [![codecov](https://codecov.io/gh/soulomoon/python-throttle/branch/develop/graph/badge.svg)](https://codecov.io/gh/soulomoon/python-throttle)
+[![PyPI version](https://badge.fury.io/py/python-throttle.svg)](https://badge.fury.io/py/python-throttle)
 
 # python redis backed limiter
 
@@ -10,13 +11,17 @@ simply using redis incr, which about 10 times the speed of the sliding version b
 * SlidingWindowLimiter    
 using redis ordered set, slow but offers more smooth limit and more extendability
 
-## dummy exmaple usage:
+## installation
+`pip install python-throttle`
+
+## dummy example usage:
+reminder: use name_space to avoid possible conflict on the same key
 ```python
 import time
-import limiter
+from limiter import FixedWindowLimiter
 TEST_REDIS_CONFIG = {'host': 'localhost','port': 6379,'db': 10}
 ip = "who are you?"
-throttle = limiter.FixedWindowLimiter(threshold=2, interval=3, redis_config=TEST_REDIS_CONFIG)
+throttle = FixedWindowLimiter(threshold=2, interval=3, redis_config=TEST_REDIS_CONFIG, name_space="default")
 print("first time, blocked?: {}".format(throttle.exceeded(ip)))
 print("second time, blocked?: {}".format(throttle.exceeded(ip)))
 print("now I block you, blocked?: {}".format(throttle.exceeded(ip)))
