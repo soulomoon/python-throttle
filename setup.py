@@ -1,12 +1,13 @@
-import codecs
+import pypandoc
 
 from setuptools import setup
 
 setup(
     name='python-throttle',
     packages=['limiter'],
-    version='0.1.4',
+    version='0.1.5',
     description='Super naive python redis limiter',
+    long_description=pypandoc.convert('README.md', 'rst'),
     author='soulomoon',
     author_email='fwy996602672@gmail.com',
     url='https://github.com/soulomoon/python-throttle',
