@@ -1,7 +1,8 @@
 ![Build Status](https://travis-ci.org/soulomoon/python-throttle.svg?branch=develop)
+[![python version](https://img.shields.io/pypi/pyversions/python-throttle.svg)](https://pypi.python.org/pypi/python-throttle)
 [![codecov](https://codecov.io/gh/soulomoon/python-throttle/branch/develop/graph/badge.svg)](https://codecov.io/gh/soulomoon/python-throttle)
 [![PyPI version](https://badge.fury.io/py/python-throttle.svg)](https://badge.fury.io/py/python-throttle)
-![python version](https://img.shields.io/pypi/pyversions/python-throttle.svg)
+
 
 # python redis backed limiter
 
