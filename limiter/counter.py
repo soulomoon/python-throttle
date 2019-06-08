@@ -37,7 +37,7 @@ class SlidingRedisCounter(BaseRedisCounter):
         with self.redis.pipeline() as session:
             session.zremrangebyscore(key, 0, now - expired)
             session.zrange(key, 0, -1)
-            session.zadd(key, now, uuid.uuid4().hex)
+            session.zadd(key, {uuid.uuid4().hex: now})
             session.expire(key, expired)
             result = session.execute()
         return len(result[1])
