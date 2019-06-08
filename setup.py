@@ -12,7 +12,7 @@ setup(
     author_email='fwy996602672@gmail.com',
     url='https://github.com/soulomoon/python-throttle',
     keywords=['throttle limiter redis counter timer middleware'],
-    python_requires='>=3.4',
+    python_requires='>=3.5',
     install_requires=[
         'redis>=3',
         'pypandoc'
