@@ -1,21 +1,22 @@
-import pypandoc
-
 from setuptools import setup
+
+with open('README.md', 'r') as fh:
+    long_description = fh.read()
 
 setup(
     name='python-throttle',
     packages=['limiter'],
-    version='0.1.9',
+    version='0.2.0',
     description='Super naive python redis limiter',
-    long_description=pypandoc.convert('README.md', 'rst'),
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     author='soulomoon',
     author_email='fwy996602672@gmail.com',
     url='https://github.com/soulomoon/python-throttle',
     keywords=['throttle limiter redis counter timer middleware'],
     python_requires='>=3.5',
     install_requires=[
-        'redis>=3',
-        'pypandoc>=1.4'
+        'redis>=3'
     ],
     classifiers=[
         'Intended Audience :: Developers',
