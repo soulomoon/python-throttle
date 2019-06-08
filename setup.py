@@ -5,7 +5,7 @@ from setuptools import setup
 setup(
     name='python-throttle',
     packages=['limiter'],
-    version='0.1.8',
+    version='0.1.9',
     description='Super naive python redis limiter',
     long_description=pypandoc.convert('README.md', 'rst'),
     author='soulomoon',
@@ -15,7 +15,7 @@ setup(
     python_requires='>=3.5',
     install_requires=[
         'redis>=3',
-        'pypandoc'
+        'pypandoc>=1.4'
     ],
     classifiers=[
         'Intended Audience :: Developers',
