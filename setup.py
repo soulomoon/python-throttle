@@ -6,7 +6,7 @@ with open('README.md', 'r') as fh:
 setup(
     name='python-throttle',
     packages=['limiter'],
-    version='0.1.9',
+    version='0.2.0',
     description='Super naive python redis limiter',
     long_description=long_description,
     long_description_content_type='text/markdown',
