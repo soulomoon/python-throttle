@@ -38,6 +38,11 @@ now I block you blocked?: True
 refill energy blocked?: False
 ```
 
+Reset the limiter: 
+```
+throttle.reset()
+```
+
 ## dummy beach mark
 It is from my unittest and not accurate,
 ```
