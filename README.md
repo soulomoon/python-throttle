@@ -43,7 +43,7 @@ Reset the limiter:
 throttle.reset()
 ```
 
-## dummy beach mark
+## dummy benchmark
 It is from my unittest and not accurate,
 ```
 rate_counter_pressure_test: SlidingRedisCounter
